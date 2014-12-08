@@ -1,0 +1,17 @@
+<form role="form" name="surveyQuestionsForm">
+    <div class="well well-small" ng-repeat="question in survey.questions">
+        <div class="form-group">
+            <label>Question {{::question.id}}</label> <span class="label label-default">{{::question.type}}</span>
+            <input ng-model="question.title" type="text" class="form-control" placeholder="Enter question title" required>
+        </div>
+
+        <div ng-if="question.type === 'Multiple Choice'" class="form-group">
+            <label>Choices</label>
+            <input ng-model="question.choices" type="text" class="form-control" placeholder="Enter comma delimited list of choices" required>
+        </div>
+    </div>
+
+    <span ng-if="surveyQuestionsForm.$invalid" class="text-danger">You must fill out all fields before you can submit your changes.</span>
+
+    <button ng-click="survey.submitQuestionUpdates()" ng-disabled="surveyQuestionsForm.$invalid" type="button" class="btn btn-primary pull-right">Save Changes</button>
+</form>
